@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.jkmcllc.pairaws.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-04T17:03:08" hostname="DESKTOP-RCL7IAH" time="1.497">
+  <properties/>
+  <testcase name="successfulResponse" classname="com.jkmcllc.pairaws.AppTest" time="1.497"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
