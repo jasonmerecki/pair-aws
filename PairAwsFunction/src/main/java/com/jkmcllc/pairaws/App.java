@@ -1,36 +1,25 @@
 package com.jkmcllc.pairaws;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.io.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.google.gson.Gson;
-import com.jkmcllc.aupair01.pairing.AccountPairingRequest;
 import com.jkmcllc.aupair01.pairing.AccountPairingResponse;
-import com.jkmcllc.aupair01.pairing.impl.PairingService;
-import com.jkmcllc.aupair01.pairing.strategy.Strategy;
+import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
+import com.jkmcllc.pairaws.service.LambdaPairingService;
 
 /**
  * Handler for requests to Lambda function.
  */
 public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private PairingService pairingService = null;
-    private Gson gsonInstance = null;
-
-    public App() {
-        pairingService = PairingService.getInstance();
-        gsonInstance = new Gson();
-    }
+    private final LambdaPairingService pairingService = LambdaPairingService.getInstance();
+    private final Gson gsonInstance = new Gson();
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         Map<String, String> headers = new HashMap<>();
@@ -40,28 +29,31 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
                 .withHeaders(headers);
         try {
-            final String pageContents = this.getPageContents("https://checkip.amazonaws.com");
-            // String output = String.format("{ \"message\": \"hello pairaws \", \"location\": \"%s\" }", pageContents);
-            AccountPairingRequest pairingRequest = PairingRequestOrderBuilderDoug.buildDougScenario1(false);
-            AccountPairingResponse accountPairingResponse = pairingService.processAccountRequest(pairingRequest);
-            String output = gsonInstance.toJson(accountPairingResponse);
-            // test outcomes
-            Map<String, List<Strategy>> account1result = accountPairingResponse.getStrategies();
-
+            String methodCheck = input.getHttpMethod();
+            String output = "";
+            if (! methodCheck.equalsIgnoreCase("POST")) {
+                String ret = String.format("{\"message\": \"method '%s' not supported\" }", methodCheck);
+                output = ret;
+            } else {
+                String rawout = gsonInstance.toJson(input);
+                // System.out.println(String.format("raw input 20211009-01: \n %s", rawout));
+                String inputBodyRaw = input.getBody();
+                AccountMarginRequest marginRequest = gsonInstance.fromJson(inputBodyRaw, AccountMarginRequest.class);
+                AccountPairingResponse accountPairingResponse = pairingService.processAccountRequest(marginRequest);
+                output = gsonInstance.toJson(accountPairingResponse);
+            }
             return response
                     .withStatusCode(200)
                     .withBody(output);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            String exceptionAsString = sw.toString();
+            String exout = String.format("{\"message\": \"ruh-roh, an exception, %s: \n '%s' \" }", e.getMessage(), exceptionAsString);
             return response
-                    .withBody("{}")
+                    .withBody(exout)
                     .withStatusCode(500);
         }
     }
 
-    private String getPageContents(String address) throws IOException{
-        URL url = new URL(address);
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            return br.lines().collect(Collectors.joining(System.lineSeparator()));
-        }
-    }
 }
