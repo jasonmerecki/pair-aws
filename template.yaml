@@ -32,6 +32,22 @@ Resources:
           Properties:
             Path: /pair
             Method: post
+  PairAwsFunctionSqs:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: PairAwsFunction
+      Handler: com.jkmcllc.pairaws.AppSqs::handleRequest
+      Runtime: java8
+      MemorySize: 512
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
+      Events:
+        PairAwsReceiveSqs:
+          Type: SQS # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Queue: arn:aws:sqs:us-west-2:508931481158:PairAwsRequest01.fifo
+            BatchSize: 10
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.jkmcllc.pairaws.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-09T20:37:27" hostname="DESKTOP-RCL7IAH" time="0.434">
+<testsuite name="com.jkmcllc.pairaws.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-11T01:33:49" hostname="DESKTOP-RCL7IAH" time="27.933">
   <properties/>
-  <testcase name="successfulResponse" classname="com.jkmcllc.pairaws.AppTest" time="0.434"/>
+  <testcase name="longResponse" classname="com.jkmcllc.pairaws.AppTest" time="27.933"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

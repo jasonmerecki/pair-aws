@@ -3,7 +3,7 @@
     {
       "messageId": "11d6ee51-4cc7-4302-9e22-7cd8afdaadf5",
       "receiptHandle": "AQEBBX8nesZEXmkhsmZeyIE8iQAMig7qw...",
-      "body": "Test message.",
+      "body": "{ \"AccountNumber\": \"JKM0001\", \"AccountBalance\": { \"TotalEquity\": \"0.00\", \"CashTradeBalance\": \"0.00\", \"MarginTradeBalance\": \"30922.39\", \"ShortTradeBalance\": \"0.00\", \"MoneyMarketTradeBalance\": \"0.00\", \"SMA\": \"0.00\" }, \"Positions\": [ { \"AccountType\": \"String!\", \"Symbol\": \"SPY   200515P00240000\", \"SettleQuantity\": \"10\", \"SecurityTypeCode\": \"O\", \"ClosingPrice\": \"0.01\", \"OptionSymbolRoot\": \"SPY\", \"OptionContractDate\": \"2020-05-15\", \"StrikePrice\": \"240.000\", \"CallPut\": \"P\" }, { \"AccountType\": \"String!\", \"Symbol\": \"SPY   200515P00230000\", \"SettleQuantity\": \"-7\", \"SecurityTypeCode\": \"O\", \"ClosingPrice\": \"0.01\", \"OptionSymbolRoot\": \"SPY\", \"OptionContractDate\": \"2020-05-15\", \"StrikePrice\": \"230.000\", \"CallPut\": \"P\" } ], \"OptionRoots\": [ { \"OptionRootSymbol\": \"SPY\", \"ExerciseStyle\": \"A\", \"UnderlyerType\": \"I\", \"Multiplier\": \"100\", \"Deliverables\": { \"SymbolDeliverables\": [ { \"symbol\": \"SPY\", \"qty\": \"100\", \"price\": \"406.59\", \"maintenancePct\": \"0.25\" } ], \"CashDeliverableValue\": \"0\" } } ] }",
       "attributes": {
         "ApproximateReceiveCount": "1",
         "SentTimestamp": "1573251510774",
