@@ -1,0 +1,111 @@
+{
+  "AccountNumber": "BrainTeaser1",
+  "AccountBalance": {
+    "TotalEquity": "0.00",
+    "CashTradeBalance": "0.00",
+    "MarginTradeBalance": "30921.39",
+    "ShortTradeBalance": "0.00",
+    "MoneyMarketTradeBalance": "0.00",
+    "SMA": "0.00"
+  },
+  "Positions": [
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200515P00240000",
+      "SettleQuantity": "1",
+      "ClosingPrice": "0.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "P",
+      "StrikePrice": "240.00",
+      "OptionContractDate": "2020-05-15"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200424P00245000",
+      "SettleQuantity": "-2",
+      "ClosingPrice": "0.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "P",
+      "StrikePrice": "245.00",
+      "OptionContractDate": "2020-04-24"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200515P00238000",
+      "SettleQuantity": "1",
+      "ClosingPrice": "0.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "P",
+      "StrikePrice": "238.00",
+      "OptionContractDate": "2020-05-15"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200508P00222000",
+      "SettleQuantity": "1",
+      "ClosingPrice": "0.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "P",
+      "StrikePrice": "222.00",
+      "OptionContractDate": "2020-05-08"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200508P00227000",
+      "SettleQuantity": "-1",
+      "ClosingPrice": "0.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "P",
+      "StrikePrice": "227.00",
+      "OptionContractDate": "2020-05-08"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPX  200508C00295000",
+      "SettleQuantity": "-1",
+      "ClosingPrice": "111.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "C",
+      "StrikePrice": "227.00",
+      "OptionContractDate": "2020-05-08"
+    },
+    {
+      "AccountType": "Margin",
+      "SecurityTypeCode": "O",
+      "Symbol": "SPXW  200508C00300000",
+      "SettleQuantity": "1",
+      "ClosingPrice": "111.01",
+      "OptionSymbolRoot": "SPY",
+      "CallPut": "C",
+      "StrikePrice": "300.00",
+      "OptionContractDate": "2020-05-08"
+    }
+  ],
+  "OptionRoots":
+  [
+    {
+      "OptionRootSymbol": "SPY",
+      "ExerciseStyle": "A",
+      "UnderlyerType": "I",
+      "Multiplier": "100",
+      "Deliverables": {
+        "SymbolDeliverables": [
+          {
+            "symbol": "SPY",
+            "qty": "100",
+            "price": "406.59",
+            "maintenancePct": "0.25"
+          }
+        ],
+        "CashDeliverableValue": "0"
+      }
+    }
+  ]
+
+}
