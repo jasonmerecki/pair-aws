@@ -1,5 +1,5 @@
-HelloWorldFunction/.gradle
-HelloWorldFunction/build
+PairAwsFunction/.gradle
+PairAwsFunction/build
 .idea
 .aws-sam
 .gradle
