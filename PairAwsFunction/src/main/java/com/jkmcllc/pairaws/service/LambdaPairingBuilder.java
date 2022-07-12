@@ -40,6 +40,8 @@ public class LambdaPairingBuilder {
             }
 
         }
+        // build account level
+        builder.setAccountStrategyGroupName(marginRequest.getAccountStrategyGroup());
         AccountPairingRequest pairingRequest = builder.build(marginRequest.getAccountNumber());
         return pairingRequest;
     }

@@ -13,6 +13,9 @@ public class AccountMarginRequest {
     @SerializedName("AccountNumber")
     @Expose
     private String accountNumber;
+    @SerializedName("AccountStrategyGroup")
+    @Expose
+    private String accountStrategyGroup;
     @SerializedName("AccountBalance")
     @Expose
     private AccountBalance accountBalance;
@@ -55,4 +58,11 @@ public class AccountMarginRequest {
         this.optionRoots = optionRoots;
     }
 
+    public String getAccountStrategyGroup() {
+        return accountStrategyGroup;
+    }
+
+    public void setAccountStrategyGroup(String accountStrategyGroup) {
+        this.accountStrategyGroup = accountStrategyGroup;
+    }
 }
