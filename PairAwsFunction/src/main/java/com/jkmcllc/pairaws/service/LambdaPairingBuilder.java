@@ -1,10 +1,7 @@
 package com.jkmcllc.pairaws.service;
 
 import com.jkmcllc.aupair01.pairing.AccountPairingRequest;
-import com.jkmcllc.aupair01.structure.DeliverableType;
-import com.jkmcllc.aupair01.structure.ExerciseStyle;
-import com.jkmcllc.aupair01.structure.OptionType;
-import com.jkmcllc.aupair01.structure.UnderlyerType;
+import com.jkmcllc.aupair01.structure.*;
 import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
 import com.jkmcllc.pairaws.pojo.OptionRoot;
 import com.jkmcllc.pairaws.pojo.Position;
@@ -42,6 +39,10 @@ public class LambdaPairingBuilder {
         }
         // build account level
         builder.setAccountStrategyGroupName(marginRequest.getAccountStrategyGroup());
+        String accountResponseDetailLevel = marginRequest.getAccountResponseDetailLevel();
+        if (accountResponseDetailLevel != null) {
+            builder.setResponseDetailLevel(Account.ResponseDetailLevel.valueOf(accountResponseDetailLevel) );
+        }
         AccountPairingRequest pairingRequest = builder.build(marginRequest.getAccountNumber());
         return pairingRequest;
     }

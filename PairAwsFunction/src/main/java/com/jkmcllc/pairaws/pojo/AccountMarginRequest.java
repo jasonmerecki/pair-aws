@@ -16,6 +16,9 @@ public class AccountMarginRequest {
     @SerializedName("AccountStrategyGroup")
     @Expose
     private String accountStrategyGroup;
+    @SerializedName("AccountResponseDetailLevel")
+    @Expose
+    private String accountResponseDetailLevel;
     @SerializedName("AccountBalance")
     @Expose
     private AccountBalance accountBalance;
@@ -64,5 +67,13 @@ public class AccountMarginRequest {
 
     public void setAccountStrategyGroup(String accountStrategyGroup) {
         this.accountStrategyGroup = accountStrategyGroup;
+    }
+
+    public String getAccountResponseDetailLevel() {
+        return accountResponseDetailLevel;
+    }
+
+    public void setAccountResponseDetailLevel(String accountResponseDetailLevel) {
+        this.accountResponseDetailLevel = accountResponseDetailLevel;
     }
 }

@@ -1,0 +1,83 @@
+
+curl --location --request POST 'https://5pkszk48oi.execute-api.us-west-2.amazonaws.com/Stage/pair' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "AccountNumber": "BoxSpreadTest",
+    "AccountStrategyGroup": "pairEach",
+    "AccountResponseDetailLevel": "SUMMARY",
+    "AccountBalance": {
+        "TotalEquity": "0.00",
+        "CashTradeBalance": "0.00",
+        "MarginTradeBalance": "30921.39",
+        "ShortTradeBalance": "0.00",
+        "MoneyMarketTradeBalance": "0.00",
+        "SMA": "0.00"
+    },
+    "Positions": [
+        {
+            "AccountType": "String!",
+            "Symbol": "MSFT  200515C00070000",
+            "SettleQuantity": "-5",
+            "SecurityTypeCode": "O",
+            "ClosingPrice": "0.01",
+            "OptionSymbolRoot": "MSFT",
+            "OptionContractDate": "2020-05-15",
+            "StrikePrice": "70.000",
+            "CallPut": "C"
+        },
+        {
+            "AccountType": "String!",
+            "Symbol": "MSFT  160115C00060000",
+            "SettleQuantity": "5",
+            "SecurityTypeCode": "O",
+            "ClosingPrice": "0.01",
+            "OptionSymbolRoot": "MSFT",
+            "OptionContractDate": "2020-05-15",
+            "StrikePrice": "60.000",
+            "CallPut": "C"
+        },
+        {
+            "AccountType": "String!",
+            "Symbol": "MSFT  160115P00060000",
+            "SettleQuantity": "5",
+            "SecurityTypeCode": "O",
+            "ClosingPrice": "0.01",
+            "OptionSymbolRoot": "MSFT",
+            "OptionContractDate": "2020-05-15",
+            "StrikePrice": "60.000",
+            "CallPut": "P"
+        },
+        {
+            "AccountType": "String!",
+            "Symbol": "MSFT  160115P00070000",
+            "SettleQuantity": "-5",
+            "SecurityTypeCode": "O",
+            "ClosingPrice": "0.01",
+            "OptionSymbolRoot": "MSFT",
+            "OptionContractDate": "2020-05-15",
+            "StrikePrice": "70.000",
+            "CallPut": "P"
+        }
+    ],
+    "OptionRoots": [
+        {
+            "OptionRootSymbol": "MSFT",
+            "ExerciseStyle": "A",
+            "UnderlyerType": "S",
+            "Multiplier": "100",
+            "Deliverables": {
+                "SymbolDeliverables": [
+                    {
+                        "symbol": "MSFT",
+                        "qty": "100",
+                        "price": "64.59",
+                        "maintenancePct": "0.25"
+                    }
+                ],
+                "CashDeliverableValue": "0"
+            }
+        }
+    ]
+}'
+
+
