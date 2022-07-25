@@ -2,6 +2,8 @@ package com.jkmcllc.pairaws.service;
 
 import com.jkmcllc.aupair01.pairing.AccountPairingRequest;
 import com.jkmcllc.aupair01.pairing.AccountPairingResponse;
+import com.jkmcllc.aupair01.pairing.PairingRequest;
+import com.jkmcllc.aupair01.pairing.PairingResponse;
 import com.jkmcllc.aupair01.pairing.impl.PairingService;
 import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
 
@@ -31,5 +33,8 @@ public class LambdaPairingService {
         return accountPairingResponse;
     }
 
-
+    public PairingResponse processRequest(PairingRequest pairingRequest) {
+        PairingResponse pairingResponse = pairingService.processRequest(pairingRequest);
+        return pairingResponse;
+    }
 }

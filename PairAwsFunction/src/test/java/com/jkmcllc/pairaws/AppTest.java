@@ -68,7 +68,7 @@ public class AppTest {
     APIGatewayProxyRequestEvent proxyEvent = new APIGatewayProxyRequestEvent();
     proxyEvent.setBody(bodyString);
     proxyEvent.setHttpMethod("POST");
-    APIGatewayProxyResponseEvent result = app.handleRequest(proxyEvent, null);
+    APIGatewayProxyResponseEvent result = app.handleRequestMapped(proxyEvent, null);
     assertEquals(result.getStatusCode().intValue(), 200);
     assertEquals(result.getHeaders().get("Content-Type"), "application/json");
     String content = result.getBody();
@@ -135,7 +135,7 @@ public class AppTest {
     APIGatewayProxyRequestEvent proxyEvent = new APIGatewayProxyRequestEvent();
     proxyEvent.setBody(bodyString);
     proxyEvent.setHttpMethod("POST");
-    APIGatewayProxyResponseEvent result = app.handleRequest(proxyEvent, null);
+    APIGatewayProxyResponseEvent result = app.handleRequestMapped(proxyEvent, null);
     assertEquals(result.getStatusCode().intValue(), 200);
     assertEquals(result.getHeaders().get("Content-Type"), "application/json");
     String content = result.getBody();
@@ -230,7 +230,7 @@ public class AppTest {
     APIGatewayProxyRequestEvent proxyEvent = new APIGatewayProxyRequestEvent();
     proxyEvent.setBody(bodyString);
     proxyEvent.setHttpMethod("POST");
-    APIGatewayProxyResponseEvent result = app.handleRequest(proxyEvent, null);
+    APIGatewayProxyResponseEvent result = app.handleRequestMapped(proxyEvent, null);
     assertEquals(result.getStatusCode().intValue(), 200);
     assertEquals(result.getHeaders().get("Content-Type"), "application/json");
     String content = result.getBody();
@@ -327,7 +327,7 @@ public class AppTest {
     APIGatewayProxyRequestEvent proxyEvent = new APIGatewayProxyRequestEvent();
     proxyEvent.setBody(bodyString);
     proxyEvent.setHttpMethod("POST");
-    APIGatewayProxyResponseEvent result = app.handleRequest(proxyEvent, null);
+    APIGatewayProxyResponseEvent result = app.handleRequestMapped(proxyEvent, null);
     assertEquals(result.getStatusCode().intValue(), 200);
     assertEquals(result.getHeaders().get("Content-Type"), "application/json");
     String content = result.getBody();
@@ -722,7 +722,7 @@ public class AppTest {
     APIGatewayProxyRequestEvent proxyEvent = new APIGatewayProxyRequestEvent();
     proxyEvent.setBody(bodyString);
     proxyEvent.setHttpMethod("POST");
-    APIGatewayProxyResponseEvent result = app.handleRequest(proxyEvent, null);
+    APIGatewayProxyResponseEvent result = app.handleRequestMapped(proxyEvent, null);
     assertEquals(result.getStatusCode().intValue(), 200);
     assertEquals(result.getHeaders().get("Content-Type"), "application/json");
     String content = result.getBody();

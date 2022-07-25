@@ -1,0 +1,97 @@
+{
+  "accounts": [
+    {
+      "positions": [
+        {
+          "symbol": "SPY   200515P00240000",
+          "description": "",
+          "qty": 10,
+          "price": 0.01,
+          "optionConfig": {
+            "optionRootSymbol": "SPY",
+            "optionType": "P",
+            "strike": "240.000",
+            "expiry": "2020-05-15 00:00",
+            "strikePrice": 240.000,
+            "expiryTimeLocal": {
+              "date": {
+                "year": 2020,
+                "month": 5,
+                "day": 15
+              },
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              }
+            },
+            "expiryDate": "May 15, 2020 12:00:00 AM"
+          }
+        },
+        {
+          "symbol": "SPY   200515P00230000",
+          "description": "",
+          "qty": -7,
+          "price": 0.01,
+          "optionConfig": {
+            "optionRootSymbol": "SPY",
+            "optionType": "P",
+            "strike": "230.000",
+            "expiry": "2020-05-15 00:00",
+            "strikePrice": 230.000,
+            "expiryTimeLocal": {
+              "date": {
+                "year": 2020,
+                "month": 5,
+                "day": 15
+              },
+              "time": {
+                "hour": 0,
+                "minute": 0,
+                "second": 0,
+                "nano": 0
+              }
+            },
+            "expiryDate": "May 15, 2020 12:00:00 AM"
+          }
+        }
+      ],
+      "orders": [],
+      "accountId": "JKM0001",
+      "customProperties": {},
+      "strategyGroupName": "core",
+      "responseDetailLevel": "VERBOSE"
+    }
+  ],
+  "optionRoots": {
+    "SPY": {
+      "optionRootSymbol": "SPY",
+      "exerciseStyle": "A",
+      "underlyerType": "I",
+      "deliverables": {
+        "deliverableList": [
+          {
+            "symbol": "SPY",
+            "qty": 100,
+            "price": 406.59,
+            "maintenancePct": 0.25,
+            "deliverableType": "S"
+          }
+        ],
+        "stockDeliverables": [
+          {
+            "symbol": "SPY",
+            "qty": 100,
+            "price": 406.59,
+            "maintenancePct": 0.25,
+            "deliverableType": "S"
+          }
+        ],
+        "cashDeliverableValue": 0
+      },
+      "multiplier": 100
+    }
+  },
+  "requestAllStrategyLists": false
+}
