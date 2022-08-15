@@ -10,6 +10,9 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.google.gson.Gson;
 import com.jkmcllc.aupair01.pairing.AccountPairingResponse;
+import com.jkmcllc.aupair01.pairing.PairingResponse;
+import com.jkmcllc.aupair01.structure.impl.AccountPairingRequestImpl;
+import com.jkmcllc.aupair01.structure.impl.PairingRequestImpl;
 import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
 import com.jkmcllc.pairaws.service.LambdaPairingService;
 
@@ -18,7 +21,7 @@ import com.jkmcllc.pairaws.service.LambdaPairingService;
  */
 public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private final LambdaPairingService pairingService = LambdaPairingService.getInstance();
+    private final LambdaPairingService lambdaPairingService = LambdaPairingService.getInstance();
     private final Gson gsonInstance = new Gson();
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
@@ -43,7 +46,7 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
                 // System.out.println(String.format("raw input 20211009-01: \n %s", rawout));
                 String inputBodyRaw = input.getBody();
                 AccountMarginRequest marginRequest = gsonInstance.fromJson(inputBodyRaw, AccountMarginRequest.class);
-                AccountPairingResponse accountPairingResponse = pairingService.processAccountRequest(marginRequest);
+                AccountPairingResponse accountPairingResponse = lambdaPairingService.processAccountRequest(marginRequest);
                 output = gsonInstance.toJson(accountPairingResponse);
             }
             return response
@@ -67,6 +70,7 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
                 .withHeaders(headers);
+        PairingRequestImpl pairingRequest = null;
         try {
             String methodCheck = input.getHttpMethod();
             String output = "";
@@ -75,9 +79,13 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
                 output = ret;
             } else {
                 String rawout = gsonInstance.toJson(input);
-                System.out.println(String.format("raw input 20211009-01: \n %s", rawout));
+                // System.out.println(String.format("raw input: \n %s", rawout));
                 String inputBodyRaw = input.getBody();
-                output = "{\"validresponsehere\": \"yep\"}";
+                System.out.println(String.format("input body: \n %s", rawout));
+                pairingRequest = gsonInstance.fromJson(inputBodyRaw, PairingRequestImpl.class);
+                PairingResponse accountPairingResponse = lambdaPairingService.processRequest(pairingRequest);
+                output = gsonInstance.toJson(accountPairingResponse);
+                System.out.println(String.format("output body: \n %s", output));
             }
             return response
                     .withStatusCode(200)

@@ -3,4 +3,7 @@ PairAwsFunction/build
 .idea
 .aws-sam
 .gradle
+*.iml
+pair-aws.iml
+
 
