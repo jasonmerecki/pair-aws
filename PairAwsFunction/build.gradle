@@ -2,6 +2,11 @@ plugins {
     id 'java'
 }
 
+compileJava {
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+}
+
 repositories {
     mavenCentral()
 }

@@ -16,7 +16,7 @@ Resources:
     Properties:
       CodeUri: PairAwsFunction
       Handler: com.jkmcllc.pairaws.App::handleRequest
-      Runtime: java17
+      Runtime: java11
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -37,7 +37,7 @@ Resources:
     Properties:
       CodeUri: PairAwsFunction
       Handler: com.jkmcllc.pairaws.AppSqs::handleRequest
-      Runtime: java17
+      Runtime: java11
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -53,7 +53,7 @@ Resources:
     Properties:
       CodeUri: PairAwsFunction
       Handler: com.jkmcllc.pairaws.App::handleRequestUnmapped
-      Runtime: java17
+      Runtime: java11
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
