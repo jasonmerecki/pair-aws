@@ -1,0 +1,78 @@
+curl --location --request POST 'https://5pkszk48oi.execute-api.us-west-2.amazonaws.com/Stage/pairunmapped' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "accountId": "JKM0001",
+            "positions": [
+                {
+                    "symbol": "MSFT  160115P00080000",
+                    "price": "28.70",
+                    "qty": -4,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "80.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "MSFT  160115P00082000",
+                    "price": "30.19",
+                    "qty": 4,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "82.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                }
+            ]
+        },
+        {
+            "accountId": "JKM0002",
+            "positions": [
+                {
+                    "symbol": "MSFT  160115P00080000",
+                    "price": "28.70",
+                    "qty": -4,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "80.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "MSFT  160115P00082000",
+                    "price": "30.19",
+                    "qty": 4,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "82.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                }
+            ]
+        }
+    ],
+    "optionRoots": {
+        "MSFT": {
+            "optionRootSymbol": "MSFT",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "multiplier": "100.00",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "MSFT",
+                        "deliverableType": "S",
+                        "qty": "100",
+                        "price": "60.40"
+                    }
+                ]
+            }
+        }
+    }
+}'
