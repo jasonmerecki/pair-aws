@@ -3,9 +3,6 @@ package com.jkmcllc.pairaws.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
-
-@Generated("jsonschema2pojo")
 public class SymbolDeliverable {
 
     @SerializedName("symbol")

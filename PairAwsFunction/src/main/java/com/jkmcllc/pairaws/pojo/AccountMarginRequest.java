@@ -3,11 +3,8 @@ package com.jkmcllc.pairaws.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Generated;
 import java.util.List;
-import java.util.Map;
 
-@Generated("jsonschema2pojo")
 public class AccountMarginRequest {
 
     @SerializedName("AccountNumber")

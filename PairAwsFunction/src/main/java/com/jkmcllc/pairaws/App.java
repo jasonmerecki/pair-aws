@@ -1,6 +1,7 @@
 package com.jkmcllc.pairaws;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,9 +10,10 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jkmcllc.aupair01.pairing.AccountPairingResponse;
 import com.jkmcllc.aupair01.pairing.PairingResponse;
-import com.jkmcllc.aupair01.structure.impl.AccountPairingRequestImpl;
+import com.jkmcllc.aupair01.structure.OptionConfig;
 import com.jkmcllc.aupair01.structure.impl.PairingRequestImpl;
 import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
 import com.jkmcllc.pairaws.service.LambdaPairingService;
@@ -22,7 +24,8 @@ import com.jkmcllc.pairaws.service.LambdaPairingService;
 public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private final LambdaPairingService lambdaPairingService = LambdaPairingService.getInstance();
-    private final Gson gsonInstance = new Gson();
+    private final Gson gsonInstance = new GsonBuilder().
+        registerTypeAdapter(LocalDateTime.class, new OptionConfig.GsonLocalDateTime()).create();
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         return handleRequestMapped(input, context);
@@ -75,7 +78,7 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
             String methodCheck = input.getHttpMethod();
             String output = "";
             if (! methodCheck.equalsIgnoreCase("POST")) {
-                String ret = String.format("{\"message\": \"method '%s' not supported by PairAws\" }", methodCheck);
+                String ret = String.format("{\"message\": \"method '%s' not supported by PairUnmappedAws\" }", methodCheck);
                 output = ret;
             } else {
                 String rawout = gsonInstance.toJson(input);

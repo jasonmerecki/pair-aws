@@ -16,7 +16,7 @@ Resources:
     Properties:
       CodeUri: PairAwsFunction
       Handler: com.jkmcllc.pairaws.App::handleRequest
-      Runtime: java8
+      Runtime: java17
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -37,7 +37,7 @@ Resources:
     Properties:
       CodeUri: PairAwsFunction
       Handler: com.jkmcllc.pairaws.AppSqs::handleRequest
-      Runtime: java8
+      Runtime: java17
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
@@ -48,6 +48,27 @@ Resources:
           Properties:
             Queue: arn:aws:sqs:us-west-2:508931481158:PairAwsRequest01.fifo
             BatchSize: 10
+  PairUnmappedAwsFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: PairAwsFunction
+      Handler: com.jkmcllc.pairaws.App::handleRequestUnmapped
+      Runtime: java17
+      MemorySize: 512
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PAIR_CONFIG: pairconfig.ini,apexdefault.ini
+      Events:
+        PairAwsApiGet:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /pairunmapped
+            Method: get
+        PairAwsApiPost:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /pairunmapped
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -57,8 +78,11 @@ Outputs:
     Description: "API Gateway endpoint URL for Prod stage for Pair Api function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
   PairAwsFunction:
-    Description: "Hello World Lambda Function ARN"
+    Description: "PairAwsFunction Lambda Function ARN"
     Value: !GetAtt PairAwsFunction.Arn
+  PairUnmappedAwsFunction:
+    Description: "PairUnmappedAwsFunction Lambda Function ARN"
+    Value: !GetAtt PairUnmappedAwsFunction.Arn
   PairAwsFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt PairAwsFunctionRole.Arn

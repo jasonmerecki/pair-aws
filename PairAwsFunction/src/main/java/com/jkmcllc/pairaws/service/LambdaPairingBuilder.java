@@ -1,6 +1,7 @@
 package com.jkmcllc.pairaws.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jkmcllc.aupair01.pairing.AccountPairingRequest;
 import com.jkmcllc.aupair01.structure.*;
 import com.jkmcllc.pairaws.pojo.AccountMarginRequest;
@@ -8,10 +9,13 @@ import com.jkmcllc.pairaws.pojo.OptionRoot;
 import com.jkmcllc.pairaws.pojo.Position;
 import com.jkmcllc.pairaws.pojo.SymbolDeliverable;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class LambdaPairingBuilder {
-    private static final Gson gsonInstance = new Gson();
+    private static final Gson gsonInstance = new GsonBuilder().
+            registerTypeAdapter(LocalDateTime.class, new OptionConfig.GsonLocalDateTime()).create();
+
     public static AccountPairingRequest buildAccountPairingRequest(AccountMarginRequest marginRequest) {
         AccountPairingRequest.AccountPairingRequestBuilder builder = AccountPairingRequest.newBuilder();
 

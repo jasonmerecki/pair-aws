@@ -1,4 +1,5 @@
 PairAwsFunction/.gradle
+PairAwsFunction/gradle
 PairAwsFunction/build
 .idea
 .aws-sam
