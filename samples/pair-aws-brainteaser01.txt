@@ -3,7 +3,6 @@ curl --location --request POST 'https://5pkszk48oi.execute-api.us-west-2.amazona
 --header 'Content-Type: application/json' \
 --data-raw '{
     "AccountNumber": "BrainTeaser1-20220706154811",
-    "AccountPairGroup":
     "AccountBalance": {
         "TotalEquity": "0.00",
         "CashTradeBalance": "0.00",
