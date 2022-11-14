@@ -40,14 +40,14 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
                 .withHeaders(headers);
         try {
             String methodCheck = input.getHttpMethod();
+            String inputBodyRaw = input.getBody();
             String output = "";
             if (! methodCheck.equalsIgnoreCase("POST")) {
                 String ret = String.format("{\"message\": \"method '%s' not supported by PairAws\" }", methodCheck);
                 output = ret;
             } else {
                 String rawout = gsonInstance.toJson(input);
-                // System.out.println(String.format("raw input 20211009-01: \n %s", rawout));
-                String inputBodyRaw = input.getBody();
+                System.out.println(String.format("raw input mapped: \n %s", rawout));
                 AccountMarginRequest marginRequest = gsonInstance.fromJson(inputBodyRaw, AccountMarginRequest.class);
                 AccountPairingResponse accountPairingResponse = lambdaPairingService.processAccountRequest(marginRequest);
                 output = gsonInstance.toJson(accountPairingResponse);
@@ -75,16 +75,19 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
                 .withHeaders(headers);
         PairingRequestImpl pairingRequest = null;
         try {
-            String methodCheck = input.getHttpMethod();
+            String methodCheck = input != null ? input.getHttpMethod() : null;
+            String inputBodyRaw = input != null ? input.getBody() : null;
             String output = "";
-            if (! methodCheck.equalsIgnoreCase("POST")) {
+            if (input == null || inputBodyRaw == null || inputBodyRaw.isEmpty()) {
+                System.out.println(String.format("no input, check the input type PairUnmappedAws methodCheck %s inputBodyRaw %s ", methodCheck, inputBodyRaw));
+                String ret = String.format("{\"message\": \"no input, did you check the input type PairUnmappedAws \" }");
+                output = ret;
+            } else if ( methodCheck != null && ! methodCheck.equalsIgnoreCase("POST")) {
                 String ret = String.format("{\"message\": \"method '%s' not supported by PairUnmappedAws\" }", methodCheck);
                 output = ret;
             } else {
                 String rawout = gsonInstance.toJson(input);
-                // System.out.println(String.format("raw input: \n %s", rawout));
-                String inputBodyRaw = input.getBody();
-                System.out.println(String.format("input body: \n %s", rawout));
+                System.out.println(String.format("input body unmapped: \n %s", rawout));
                 pairingRequest = gsonInstance.fromJson(inputBodyRaw, PairingRequestImpl.class);
                 PairingResponse accountPairingResponse = lambdaPairingService.processRequest(pairingRequest);
                 output = gsonInstance.toJson(accountPairingResponse);

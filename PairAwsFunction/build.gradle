@@ -18,3 +18,8 @@ dependencies {
     implementation fileTree(dir: 'lib', includes: ['*.jar', '*.ini'])
     testImplementation 'junit:junit:4.13.1'
 }
+
+task copyDeps(type: Copy) {
+    from configurations.compileClasspath
+    into 'build/libs'
+}
