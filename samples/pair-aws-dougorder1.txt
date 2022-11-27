@@ -1,0 +1,152 @@
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "SPY   200515P00240000",
+                    "description": "",
+                    "qty": 1,
+                    "price": 0.01,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPY",
+                        "optionType": "P",
+                        "strike": "240.00",
+                        "expiry": "2020-05-15 16:00",
+                        "strikePrice": 240.00,
+                        "expiryTimeLocal": "2020-05-15T16:00:00"
+                    }
+                },
+                {
+                    "symbol": "SPY   200424P00245000",
+                    "description": "",
+                    "qty": -2,
+                    "price": 0.01,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPY",
+                        "optionType": "P",
+                        "strike": "245.00",
+                        "expiry": "2020-04-24 16:00",
+                        "strikePrice": 245.00,
+                        "expiryTimeLocal": "2020-04-24T16:00:00"
+                    }
+                },
+                {
+                    "symbol": "SPY   200515P00238000",
+                    "description": "",
+                    "qty": 1,
+                    "price": 0.01,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPY",
+                        "optionType": "P",
+                        "strike": "238.00",
+                        "expiry": "2020-05-15 16:00",
+                        "strikePrice": 238.00,
+                        "expiryTimeLocal": "2020-05-15T16:00:00"
+                    }
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "SPY   200508P00222000",
+                            "description": "",
+                            "qty": 1,
+                            "price": 0.01,
+                            "optionConfig": {
+                                "optionRootSymbol": "SPY",
+                                "optionType": "P",
+                                "strike": "222.00",
+                                "expiry": "2020-05-08 16:00",
+                                "strikePrice": 222.00,
+                                "expiryTimeLocal": "2020-05-08T16:00:00"
+                            }
+                        },
+                        {
+                            "symbol": "SPY   200508P00227000",
+                            "description": "",
+                            "qty": -1,
+                            "price": 0.01,
+                            "optionConfig": {
+                                "optionRootSymbol": "SPY",
+                                "optionType": "P",
+                                "strike": "227.00",
+                                "expiry": "2020-05-08 16:00",
+                                "strikePrice": 227.00,
+                                "expiryTimeLocal": "2020-05-08T16:00:00"
+                            }
+                        },
+                        {
+                            "symbol": "SPY   200508C00295000",
+                            "description": "",
+                            "qty": -1,
+                            "price": 111.00,
+                            "optionConfig": {
+                                "optionRootSymbol": "SPY",
+                                "optionType": "C",
+                                "strike": "295.00",
+                                "expiry": "2020-05-08 16:00",
+                                "strikePrice": 295.00,
+                                "expiryTimeLocal": "2020-05-08T16:00:00"
+                            }
+                        },
+                        {
+                            "symbol": "SPY   200508C00300000",
+                            "description": "",
+                            "qty": 1,
+                            "price": 111.00,
+                            "optionConfig": {
+                                "optionRootSymbol": "SPY",
+                                "optionType": "C",
+                                "strike": "300.00",
+                                "expiry": "2020-05-08 16:00",
+                                "strikePrice": 300.00,
+                                "expiryTimeLocal": "2020-05-08T16:00:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderDescription": "Sell to open 1 SPY Iron Condor spread @ LM 2.00",
+                    "orderMaintenanceCost": -200.00,
+                    "orderInitialCost": -200.00
+                }
+            ],
+            "accountId": "Doug-Scenario1",
+            "customProperties": {},
+            "strategyGroupName": "core",
+            "responseDetailLevel": "VERBOSE"
+        }
+    ],
+    "optionRoots": {
+        "SPY": {
+            "optionRootSymbol": "SPY",
+            "exerciseStyle": "A",
+            "underlyerType": "I",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "SPY",
+                        "qty": 100,
+                        "price": 406.59,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    }
+                ],
+                "stockDeliverables": [
+                    {
+                        "symbol": "SPY",
+                        "qty": 100,
+                        "price": 406.59,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    }
+                ],
+                "cashDeliverableValue": 0
+            },
+            "multiplier": 100.00
+        }
+    },
+    "requestAllStrategyLists": false
+}'
