@@ -1,0 +1,69 @@
+# start with stock
+# then add an order leg sell short calls to use part of stock position
+# which will result in covered call.
+# But the worst case result will show that the order DOES NOT fill
+# because selling OTM calls covered by stock does not add risk.
+# there will be no buying power to hold back.
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "CSCO",
+                    "description": "Cisco stock",
+                    "qty": "675",
+                    "price": "48.08"
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "CSCO  230116C00050000",
+                            "description": "",
+                            "qty": "-3",
+                            "price": "1.56",
+                            "optionConfig": {
+                                "optionRootSymbol": "CSCO",
+                                "optionType": "C",
+                                "strike": "50.00",
+                                "expiry": "2023-01-16 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderDescription": "Sell to open 3 CSCO 50 call @ LM 2.31",
+                    "orderMaintenanceCost": "-231.00",
+                    "orderInitialCost": "-231.00"
+                }
+            ],
+            "accountId": "Brian-Scenario1",
+            "customProperties": {},
+            "strategyGroupName": "core",
+            "responseDetailLevel": "VERBOSE"
+        }
+    ],
+    "optionRoots": {
+        "CSCO": {
+            "optionRootSymbol": "CSCO",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "CSCO",
+                        "qty": "100",
+                        "price": "40.08",
+                        "maintenancePct": "0.25",
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
+

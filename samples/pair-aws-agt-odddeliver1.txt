@@ -1,0 +1,116 @@
+# Account positions with non standard deliverable options:
+#
+# 7 long NKE1 55 call
+# 8 short NKE1 60 call
+# 430 NKE stock
+# 205 LULU
+#
+# 7 of the options pair into long call spreads
+# leaving 1 short call
+# that can be covered by the odd deliverables
+# of 100 NKE and 45 LULU
+$ the odd deliverables are a single logical deliverable leg
+
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "NKE1  160115C00055000",
+                    "description": "",
+                    "qty": 7,
+                    "price": 74.09,
+                    "optionConfig": {
+                        "optionRootSymbol": "NKE1",
+                        "optionType": "C",
+                        "strike": "55.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "NKE1  160115C00060000",
+                    "description": "",
+                    "qty": -8,
+                    "price": 60.22,
+                    "optionConfig": {
+                        "optionRootSymbol": "NKE1",
+                        "optionType": "C",
+                        "strike": "60.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "NKE",
+                    "description": "",
+                    "qty": 430,
+                    "price": 65.20
+                },
+                {
+                    "symbol": "LULU",
+                    "description": "",
+                    "qty": 205,
+                    "price": 40.93
+                }
+            ],
+            "orders": [],
+            "accountId": "Nike account 1",
+            "customProperties": {},
+            "strategyGroupName": "core",
+            "responseDetailLevel": "VERBOSE"
+        }
+    ],
+    "optionRoots": {
+        "NKE1": {
+            "optionRootSymbol": "NKE1",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "NKE",
+                        "qty": 100,
+                        "price": 65.20,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    },
+                    {
+                        "symbol": "LULU",
+                        "qty": 45,
+                        "price": 40.93,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    },
+                    {
+                        "symbol": "USD",
+                        "price": 40.93,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "C"
+                    }
+                ],
+                "stockDeliverables": [
+                    {
+                        "symbol": "NKE",
+                        "qty": 100,
+                        "price": 65.20,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    },
+                    {
+                        "symbol": "LULU",
+                        "qty": 45,
+                        "price": 40.93,
+                        "maintenancePct": 0.25,
+                        "deliverableType": "S"
+                    }
+                ],
+                "cashDeliverableValue": 40.93
+            },
+            "multiplier": 100.00
+        }
+    }
+}'
+
+

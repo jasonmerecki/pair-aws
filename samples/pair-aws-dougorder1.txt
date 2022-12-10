@@ -1,3 +1,12 @@
+# start with two short put calendar spreads
+# then add an order sell to open an iron condor spread.
+# (this is the brain teaser Doug said ToS couldn't pair)
+# note that the worst outcome will show that
+# the iron condor will fill b/c it is risk increasing.
+# the impact of the iron condor order needs to be
+# held back from buying power as open order reserves
+
+
 curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
 --header 'Content-Type: application/json' \
 --data-raw '{

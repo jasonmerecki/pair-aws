@@ -1,0 +1,120 @@
+# index and stock options in same account
+# note deliverable for SPXW is still a "stock" type even though it is cash settled and an "I" type root
+#  it is a "stock" type since it is based on the price of SPXW
+# only a true cash amount in an odd deliverable will have a deliverable type of "C"
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "SPXW  230116C04100000",
+                    "description": "SPXW  4100 Jan call",
+                    "qty": -3,
+                    "price": 1.56,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPXW",
+                        "optionType": "C",
+                        "strike": "4100.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                },
+                {
+                    "symbol": "SPXW  230116C04200000",
+                    "description": "SPXW  4200 Jan call",
+                    "qty": 5,
+                    "price": 3.56,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPXW",
+                        "optionType": "C",
+                        "strike": "4200.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                },
+                {
+                    "symbol": "SPY   230116C04100000",
+                    "description": "SPY  4100 Jan call",
+                    "qty": -4,
+                    "price": 1.86,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPY",
+                        "optionType": "C",
+                        "strike": "4100.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                },
+                {
+                    "symbol": "SPY  230116C04200000",
+                    "description": "SPY  4200 Jan call",
+                    "qty": 11,
+                    "price": 3.86,
+                    "optionConfig": {
+                        "optionRootSymbol": "SPY",
+                        "optionType": "C",
+                        "strike": "4200.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                }
+            ],
+            "orders": [],
+            "accountId": "AgtIndexAndETF",
+            "strategyGroupName": "core"
+        }
+    ],
+    "optionRoots": {
+        "SPXW": {
+            "optionRootSymbol": "SPXW",
+            "exerciseStyle": "E",
+            "underlyerType": "I",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "SPXW",
+                        "qty": 100,
+                        "price": 3998.00,
+                        "deliverableType": "S"
+                    }
+                ],
+                "stockDeliverables": [
+                    {
+                        "symbol": "SPXW",
+                        "qty": 100,
+                        "price": 3998.00,
+                        "deliverableType": "S"
+                    }
+                ],
+                "cashDeliverableValue": 0
+            },
+            "multiplier": 100
+        },
+        "SPY": {
+            "optionRootSymbol": "SPY",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "SPY",
+                        "qty": 100,
+                        "price": 3988.00,
+                        "deliverableType": "S"
+                    }
+                ],
+                "stockDeliverables": [
+                    {
+                        "symbol": "SPY",
+                        "qty": 100,
+                        "price": 3988.00,
+                        "deliverableType": "S"
+                    }
+                ],
+                "cashDeliverableValue": 0
+            },
+            "multiplier": 100
+        }
+    },
+    "requestAllStrategyLists": false
+}'
+
