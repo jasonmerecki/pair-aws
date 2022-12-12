@@ -86,27 +86,9 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                     {
                         "symbol": "USD",
                         "price": 40.93,
-                        "maintenancePct": 0.25,
                         "deliverableType": "C"
                     }
-                ],
-                "stockDeliverables": [
-                    {
-                        "symbol": "NKE",
-                        "qty": 100,
-                        "price": 65.20,
-                        "maintenancePct": 0.25,
-                        "deliverableType": "S"
-                    },
-                    {
-                        "symbol": "LULU",
-                        "qty": 45,
-                        "price": 40.93,
-                        "maintenancePct": 0.25,
-                        "deliverableType": "S"
-                    }
-                ],
-                "cashDeliverableValue": 40.93
+                ]
             },
             "multiplier": 100.00
         }

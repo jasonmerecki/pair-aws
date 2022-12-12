@@ -22,9 +22,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                         "optionRootSymbol": "SPY",
                         "optionType": "P",
                         "strike": "240.00",
-                        "expiry": "2020-05-15 16:00",
-                        "strikePriceXXX": 240.00,
-                        "expiryTimeLocalXXX": "2020-05-15T16:00:00"
+                        "expiry": "2020-05-15 16:00"
                     }
                 },
                 {
@@ -36,9 +34,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                         "optionRootSymbol": "SPY",
                         "optionType": "P",
                         "strike": "245.00",
-                        "expiry": "2020-04-24 16:00",
-                        "strikePriceXXXX": 245.00,
-                        "expiryTimeLocalXXXX": "2020-04-24T16:00:00"
+                        "expiry": "2020-04-24 16:00"
                     }
                 },
                 {
@@ -50,9 +46,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                         "optionRootSymbol": "SPY",
                         "optionType": "P",
                         "strike": "238.00",
-                        "expiry": "2020-05-15 16:00",
-                        "strikePriceXXX": 238.00,
-                        "expiryTimeLocalX": "2020-05-15T16:00:00"
+                        "expiry": "2020-05-15 16:00"
                     }
                 }
             ],
@@ -68,9 +62,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "P",
                                 "strike": "222.00",
-                                "expiry": "2020-05-08 16:00",
-                                "strikePriceX": 222.00,
-                                "expiryTimeLocalX": "2020-05-08T16:00:00"
+                                "expiry": "2020-05-08 16:00"
                             }
                         },
                         {
@@ -82,9 +74,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "P",
                                 "strike": "227.00",
-                                "expiry": "2020-05-08 16:00",
-                                "strikePriceX": 227.00,
-                                "expiryTimeLocalX": "2020-05-08T16:00:00"
+                                "expiry": "2020-05-08 16:00"
                             }
                         },
                         {
@@ -96,9 +86,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "C",
                                 "strike": "295.00",
-                                "expiry": "2020-05-08 16:00",
-                                "strikePriceX": 295.00,
-                                "expiryTimeLocalX": "2020-05-08T16:00:00"
+                                "expiry": "2020-05-08 16:00"
                             }
                         },
                         {
@@ -110,9 +98,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "C",
                                 "strike": "300.00",
-                                "expiry": "2020-05-08 16:00",
-                                "strikePriceX": 300.00,
-                                "expiryTimeLocalX": "2020-05-08T16:00:00"
+                                "expiry": "2020-05-08 16:00"
                             }
                         }
                     ],
@@ -132,9 +118,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "P",
                                 "strike": "240.00",
-                                "expiry": "2020-05-15 16:00",
-                                "strikePriceX": 240.00,
-                                "expiryTimeLocalX": "2020-05-15T16:00:00"
+                                "expiry": "2020-05-15 16:00"
                             }
                         },
                         {
@@ -146,9 +130,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                                 "optionRootSymbol": "SPY",
                                 "optionType": "P",
                                 "strike": "245.00",
-                                "expiry": "2020-04-24 16:00",
-                                "strikePriceXX": 245.00,
-                                "expiryTimeLocalXX": "2020-04-24T16:00:00"
+                                "expiry": "2020-04-24 16:00"
                             }
                         }
                     ],
@@ -159,9 +141,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                 }
             ],
             "accountId": "Doug-Scenario1",
-            "customProperties": {},
-            "strategyGroupName": "core",
-            "responseDetailLevel": "VERBOSE"
+            "strategyGroupName": "core"
         }
     ],
     "optionRoots": {
@@ -178,17 +158,7 @@ curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-
                         "maintenancePct": 0.25,
                         "deliverableType": "S"
                     }
-                ],
-                "stockDeliverablesXXXX": [
-                    {
-                        "symbol": "SPY",
-                        "qty": "100",
-                        "price": "406.59",
-                        "maintenancePct": 0.25,
-                        "deliverableType": "S"
-                    }
-                ],
-                "cashDeliverableValueXXX": 0
+                ]
             },
             "multiplier": 100
         }
