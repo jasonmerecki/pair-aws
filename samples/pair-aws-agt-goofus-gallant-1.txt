@@ -1,0 +1,184 @@
+# Goofus and Gallant example 1
+#
+# Both accounts start with positions:
+# -4 MSFT Jan 50 put
+# 7 MSFT Jan 52 put
+#
+# these positions will pair into:
+# 4 long MSFT 50/52 put vertical
+# 3 long unpaired MSFT 52 puts
+#
+# The option requirement is zero to start, for long spreads and long extra options.
+#
+# The order is:
+# Sell to close 3 MSFT 52 put LM $2.00 (will bring in $600.00 cash)
+#
+# Gallant opens one of these orders, and the worst case is that it does not fill,
+# because it will bring in cash while closing out some of the unpaired long puts.
+# There will be no additional risk or option requirement.
+#
+# Goofus opens two of these orders, and the worst case is that they BOTH fill,
+# because it will be closing out all the unpaired long puts and some of the
+# long puts paired with the short puts in the long veritical. That leaves some
+# short puts unpaired and increases risk and option requirement.
+#
+# Since Goofus is increasing risk in the worst case, buying power (excess) should be
+# withheld in the amount of the worst case impact:
+#
+# $1650 change (increase) in option req for 2 unpaired short puts
+# -$1200 incoming cash from order fills
+# ----------
+# $450 net amount to hold back from buying power (excess before multiplier)
+#
+# This example is intended to demonstrate two things
+# 1) the buying ppwer withheld should consider both the option/stock requirement
+#    change plus the cash impact change
+# 2) the same order can increase risk or not increase risk depending on how it
+#    interacts with other open orders (the order considered by itself does not
+#    have a risk increase/neutral outcome, it must be considered with others)
+#
+
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "MSFT  160115P00050000",
+                    "description": "MSFT Jan 50 put",
+                    "qty": -4,
+                    "price": 0.50,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "50.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "MSFT  160115P00052000",
+                    "description": "MSFT Jan 52 put",
+                    "qty": 7,
+                    "price": 1.32,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "50.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "MSFT  160115P00052000",
+                            "description": "MSFT Jan 52 put",
+                            "qty": -3,
+                            "price": 1.32,
+                            "optionConfig": {
+                                "optionRootSymbol": "MSFT",
+                                "optionType": "P",
+                                "strike": "52.00",
+                                "expiry": "2016-01-15 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderCashCost": "-600.00",
+                    "orderDescription": "Sell to close 3 MSFT 52 puts @ LM 2.00"
+                },
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "MSFT  160115P00052000",
+                            "description": "MSFT Jan 52 put",
+                            "qty": -3,
+                            "price": 1.32,
+                            "optionConfig": {
+                                "optionRootSymbol": "MSFT",
+                                "optionType": "P",
+                                "strike": "52.00",
+                                "expiry": "2016-01-15 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderB",
+                    "orderCashCost": "-600.00",
+                    "orderDescription": "Sell to close 3 MSFT 52 puts @ LM 2.00"
+                }
+            ],
+            "accountId": "Goofus"
+        },
+        {
+            "positions": [
+                {
+                    "symbol": "MSFT  160115P00050000",
+                    "description": "MSFT Jan 50 put",
+                    "qty": -4,
+                    "price": 0.50,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "50.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                },
+                {
+                    "symbol": "MSFT  160115P00052000",
+                    "description": "MSFT Jan 52 put",
+                    "qty": 7,
+                    "price": 1.32,
+                    "optionConfig": {
+                        "optionRootSymbol": "MSFT",
+                        "optionType": "P",
+                        "strike": "50.00",
+                        "expiry": "2016-01-15 16:00"
+                    }
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "MSFT  160115P00052000",
+                            "description": "MSFT Jan 52 put",
+                            "qty": -3,
+                            "price": 1.32,
+                            "optionConfig": {
+                                "optionRootSymbol": "MSFT",
+                                "optionType": "P",
+                                "strike": "52.00",
+                                "expiry": "2016-01-15 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderCashCost": "-600.00",
+                    "orderDescription": "Sell to close 3 MSFT 52 puts @ LM 2.00"
+                }
+            ],
+            "accountId": "Gallant"
+        }
+    ],
+    "optionRoots": {
+        "MSFT": {
+            "optionRootSymbol": "MSFT",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "MSFT",
+                        "qty": 100,
+                        "price": 60.40,
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
