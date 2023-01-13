@@ -1,0 +1,63 @@
+# hold stock and leg into a covered call
+# with a sell-to-open short OTM call
+# note the worst case is that the order does not execute
+# because it brings in cash but adds no requirement or risk
+
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd'
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "CSCO",
+                    "description": "CSCO stock",
+                    "qty": 675,
+                    "price": 48.08
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "CSCO  230116C00050000",
+                            "description": "CSCO  50 call",
+                            "qty": -3,
+                            "price": 1.56,
+                            "optionConfig": {
+                                "optionRootSymbol": "CSCO",
+                                "optionType": "C",
+                                "strike": "50.00",
+                                "expiry": "2023-01-16 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderDescription": "Sell to open 3 CSCO 50 call @ LM 2.3",
+                    "orderCashCost": -231.00
+                }
+            ],
+            "accountId": "BrianScenario1"
+        }
+    ],
+    "optionRoots": {
+        "CSCO": {
+            "optionRootSymbol": "CSCO",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "CSCO",
+                        "qty": 100,
+                        "price": 40.08,
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
+

@@ -1,0 +1,51 @@
+# hold a covered call plus extra stock
+# no orders, just showing the requirement for positions
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd'
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "CSCO",
+                    "description": "CSCO stock",
+                    "qty": 675,
+                    "price": 48.08
+                },
+                {
+                    "symbol": "CSCO  230116C00050000",
+                    "description": "CSCO  50 call",
+                    "qty": -3,
+                    "price": 1.56,
+                    "optionConfig": {
+                        "optionRootSymbol": "CSCO",
+                        "optionType": "C",
+                        "strike": "50.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                }
+            ],
+            "orders": [],
+            "accountId": "BrianScenario2"
+        }
+    ],
+    "optionRoots": {
+        "CSCO": {
+            "optionRootSymbol": "CSCO",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "CSCO",
+                        "qty": 100,
+                        "price": 40.08,
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
