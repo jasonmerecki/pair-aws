@@ -1,0 +1,58 @@
+# index sample
+
+
+curl --location --request POST 'https://zmkinqqhtp4dzbr5qlrjfuuwkm0lowha.lambda-url.us-east-2.on.aws/sjdjd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "XOM   230116C00125000",
+                    "description": "XOM 125 call",
+                    "qty": 3,
+                    "price": 0.66,
+                    "optionConfig": {
+                        "optionRootSymbol": "XOM",
+                        "optionType": "C",
+                        "strike": "125.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                },
+                {
+                    "symbol": "XOM   230116C00120000",
+                    "description": "XOM 120 call",
+                    "qty": -3,
+                    "price": 1.56,
+                    "optionConfig": {
+                        "optionRootSymbol": "XOM",
+                        "optionType": "C",
+                        "strike": "120.00",
+                        "expiry": "2023-01-16 16:00"
+                    }
+                }
+            ],
+            "orders": [],
+            "accountId": "AGTIndex"
+        }
+    ],
+    "optionRoots": {
+        "XOM": {
+            "optionRootSymbol": "XOM",
+            "exerciseStyle": "E",
+            "underlyerType": "I",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "XOM",
+                        "qty": 100,
+                        "price": 116.07,
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
+

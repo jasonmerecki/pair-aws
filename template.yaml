@@ -20,7 +20,7 @@ Resources:
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
-          PAIR_CONFIG: agtconfig.ini
+          PAIR_CONFIG: /opt/agtconfig.ini
       Events:
         PairAwsApiGet:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -57,7 +57,9 @@ Resources:
       MemorySize: 512
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
-          PAIR_CONFIG: agtconfig.ini
+          PAIR_CONFIG: /opt/agtconfig.ini
+      Layers:
+        - !Ref AgtConfigLayer
       Events:
         PairAwsApiGet:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -69,6 +71,15 @@ Resources:
           Properties:
             Path: /pairunmapped
             Method: post
+  AgtConfigLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: agtconfig
+      Description: AGT custom config file
+      ContentUri: ./PairAwsFunction/agtconfig/
+      CompatibleRuntimes:
+        - provided.al2
+      LicenseInfo: 'MIT'
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function

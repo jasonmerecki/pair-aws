@@ -1,9 +1,15 @@
 package com.jkmcllc.pairaws;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -26,6 +32,27 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
     private final LambdaPairingService lambdaPairingService = LambdaPairingService.getInstance();
     private final Gson gsonInstance = new GsonBuilder().
         registerTypeAdapter(LocalDateTime.class, new OptionConfig.GsonLocalDateTime()).create();
+
+    static {
+        String wd = System.getProperty("user.dir");
+        System.out.println("Pairing Lambda init, Working Directory = " + wd);
+        try {
+            Stream.of(new File(wd).listFiles())
+                    .filter(file -> !file.isDirectory())
+                    .forEach(System.out::println);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Pairing Lambda checking layer dir /opt");
+        try {
+            Stream.of(new File("/opt").listFiles())
+                    .filter(file -> !file.isDirectory())
+                    .forEach(System.out::println);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
         return handleRequestMapped(input, context);
