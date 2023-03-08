@@ -1,0 +1,78 @@
+# hold 1 covered call, and 100 extra unpaired stock
+# then open an order to sell another short call which will
+# be covered by the extra unpaired stock.
+# Note the worst case outcome is that the sell-to-open short call
+# order does not fill! Because it brings in cash and adds
+# no risk. Thus the outcome will not show the order filled.
+
+
+curl --location 'https://zblcuxvqpo6w44ofd2pttc3wua0flbvn.lambda-url.us-east-2.on.aws/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "accounts": [
+        {
+            "positions": [
+                {
+                    "symbol": "AAPL",
+                    "description": "AAPL stock",
+                    "qty": 200,
+                    "price": 155.33
+                },
+                {
+                    "symbol": "AAPL  23021700014000",
+                    "description": "XOM  140 call",
+                    "qty": -1,
+                    "price": 4.00,
+                    "optionConfig": {
+                        "optionRootSymbol": "AAPL",
+                        "optionType": "C",
+                        "strike": "140.00",
+                        "expiry": "2023-02-22 16:00"
+                    }
+                }
+            ],
+            "orders": [
+                {
+                    "orderLegs": [
+                        {
+                            "symbol": "AAPL  23021700015000",
+                            "description": "AAPL  150 call",
+                            "qty": -1,
+                            "price": 3.00,
+                            "optionConfig": {
+                                "optionRootSymbol": "AAPL",
+                                "optionType": "C",
+                                "strike": "150.00",
+                                "expiry": "2023-02-22 16:00"
+                            }
+                        }
+                    ],
+                    "orderId": "OrderA",
+                    "orderDescription": "Sell to open 1 AAPL 150 call @ $3.00",
+                    "orderCashCost": -300.00
+                }
+            ],
+            "accountId": "test01"
+        }
+    ],
+    "optionRoots": {
+        "AAPL": {
+            "optionRootSymbol": "AAPL",
+            "exerciseStyle": "A",
+            "underlyerType": "S",
+            "deliverables": {
+                "deliverableList": [
+                    {
+                        "symbol": "AAPL",
+                        "qty": 100,
+                        "price": 116.07,
+                        "deliverableType": "S"
+                    }
+                ]
+            },
+            "multiplier": 100
+        }
+    }
+}'
+
+
